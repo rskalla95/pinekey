@@ -73,6 +73,7 @@
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
+      min-height: 100dvh;
       display: flex; flex-direction: column; justify-content: center;
       padding: 10rem 3rem 6rem;
       position: relative; overflow: hidden;
@@ -193,8 +194,9 @@
 
     /* ── ABOUT ── */
     .about {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
       border-top: 1px solid rgba(192,236,172,0.12);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+      padding-bottom: 7rem;
     }
     .about-text { color: var(--muted); font-size: 1rem; line-height: 1.9; margin-top: 1.8rem; }
     .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -297,6 +299,19 @@
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s ease, transform 0.75s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
+    /* ── HAMBURGER ── */
+    .hamburger {
+      display: none; flex-direction: column; justify-content: space-between;
+      width: 22px; height: 15px; cursor: pointer; background: none; border: none; padding: 0;
+    }
+    .hamburger span {
+      display: block; height: 1.5px; background: var(--muted);
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(6.75px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.75px) rotate(-45deg); }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
@@ -309,13 +324,24 @@
       .step { border-right: none; border-bottom: 1px solid rgba(192,236,172,0.1); }
       .contact { grid-template-columns: 1fr; gap: 3rem; }
       footer { flex-direction: column; gap: 1.2rem; text-align: center; padding: 2rem 1.5rem; }
+      .client-logo { height: 60px; }
+      .clients { padding: 1.5rem 0; }
     }
     @media (max-width: 560px) {
-      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links {
+        display: none; flex-direction: column; align-items: flex-start;
+        position: fixed; top: 0; left: 0; right: 0;
+        background: rgba(9,9,9,0.97); backdrop-filter: blur(14px);
+        padding: 7rem 2rem 3rem; gap: 2rem; z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1rem; letter-spacing: 0.08em; }
       .about-stats { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
       .btn-outline { margin-left: 0; margin-top: 0.8rem; display: inline-block; }
       .hero-cta { display: flex; flex-direction: column; align-items: flex-start; }
+      .client-logo { height: 44px; }
     }
   </style>
 </head>
@@ -324,12 +350,15 @@
   <!-- NAV -->
   <nav>
     <a class="nav-logo" href="#"><img src="logo-primary.png" alt="Pine Key Marketing" class="nav-logo-img" /></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- HERO -->
@@ -366,19 +395,15 @@
     <div>
       <p class="section-label reveal">Who We Are</p>
       <h2 class="section-title reveal">Marketing that moves the needle.</h2>
+    </div>
+    <div>
       <p class="about-text reveal">Pine Key is a Utah-based marketing agency built on one principle: your growth is the only metric that matters. We combine sharp strategy with hands-on execution to help businesses stand out, connect with the right audience, and convert attention into revenue.</p>
       <p class="about-text reveal" style="margin-top:1rem;">Whether you're launching something new or scaling what's already working, we bring the clarity, creativity, and accountability to get you there.</p>
-    </div>
-    <div class="about-stats">
-      <div class="stat reveal"><div class="stat-num">100%</div><div class="stat-label">Client Focus</div></div>
-      <div class="stat reveal"><div class="stat-num">ROI</div><div class="stat-label">First Mindset</div></div>
-      <div class="stat reveal"><div class="stat-num">Utah</div><div class="stat-label">Based &amp; Rooted</div></div>
-      <div class="stat reveal"><div class="stat-num">2025</div><div class="stat-label">Founded</div></div>
     </div>
   </section>
 
   <!-- SERVICES -->
-  <section id="services">
+  <section id="services" style="border-top: 1px solid rgba(192,236,172,0.12);">
     <p class="section-label reveal">What We Do</p>
     <h2 class="section-title reveal">Services built for real growth.</h2>
     <div class="services-grid">
@@ -479,6 +504,20 @@
   </footer>
 
   <script>
+    // ── HAMBURGER ──
+    (function () {
+      const btn   = document.getElementById('hamburger');
+      const links = document.getElementById('nav-links');
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('open');
+        links.classList.toggle('open');
+      });
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        btn.classList.remove('open');
+        links.classList.remove('open');
+      }));
+    })();
+
     // ── MARQUEE ──
     (function () {
       const track   = document.querySelector('.clients-grid');
