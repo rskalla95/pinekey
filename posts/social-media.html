@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Social Media Playbook for Utah Small Businesses in 2025 — Pine Key Marketing</title>
+  <meta name="description" content="You don't need to be on every platform. You need to be exceptional on the right ones. Here's the social media playbook for Utah small businesses in 2025." />
+  <link rel="icon" type="image/png" href="../logo-pk.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root { --green: #C0ECAC; --black: #090909; --card-bg: #141414; --white: #F5F5F0; --muted: #F5F5F0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; pointer-events: none; z-index: 9999; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 3rem; background: rgba(9,9,9,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(192,236,172,0.08); }
+    .nav-logo-img { height: 80px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.25s; opacity: 0.45; }
+    .nav-links a:hover { color: var(--green); opacity: 1; }
+    .post-header { padding: 12rem 3rem 4rem; max-width: 800px; border-bottom: 1px solid rgba(192,236,172,0.12); }
+    .post-tag { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 1.2rem; display: block; }
+    .post-title { font-family: 'Work Sans', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; line-height: 1.1; margin-bottom: 1.2rem; }
+    .post-meta { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); opacity: 0.45; }
+    .post-body { max-width: 720px; padding: 4rem 3rem; }
+    .post-body p { font-size: 1rem; line-height: 1.9; margin-bottom: 1.6rem; color: var(--muted); opacity: 0.85; }
+    .post-body h2 { font-family: 'Work Sans', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--white); margin: 2.5rem 0 1rem; }
+    .post-body h3 { font-family: 'Work Sans', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--green); margin: 2rem 0 0.6rem; }
+    .post-body ul { padding-left: 1.4rem; margin-bottom: 1.6rem; }
+    .post-body ul li { font-size: 1rem; line-height: 1.9; color: var(--muted); opacity: 0.85; margin-bottom: 0.4rem; }
+    .post-cta { margin: 4rem 3rem; padding: 3rem; background: var(--card-bg); border: 1px solid rgba(192,236,172,0.12); max-width: 720px; }
+    .post-cta h3 { font-family: 'Work Sans', sans-serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.8rem; }
+    .post-cta p { font-size: 0.92rem; color: var(--muted); opacity: 0.7; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: 0.85rem 2.2rem; border: 1px solid var(--green); color: var(--black); background: var(--green); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.25s, color 0.25s; }
+    .btn:hover { background: transparent; color: var(--green); }
+    footer { border-top: 1px solid rgba(192,236,172,0.1); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo-img { height: 36px; width: auto; }
+    .footer-copy { font-size: 0.75rem; color: var(--muted); opacity: 0.45; letter-spacing: 0.06em; }
+    .footer-socials { display: flex; gap: 1.5rem; }
+    .footer-socials a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; opacity: 0.45; }
+    .footer-socials a:hover { color: var(--green); opacity: 1; }
+    .back-link { display: inline-block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); text-decoration: none; margin: 2rem 3rem 0; }
+    .back-link:hover { opacity: 0.7; }
+    @media (max-width: 900px) { nav { padding: 1.2rem 1.5rem; } .post-header, .post-body, .post-cta { padding-left: 1.5rem; padding-right: 1.5rem; } .back-link { margin-left: 1.5rem; } footer { flex-direction: column; gap: 1.2rem; text-align: center; padding: 2rem 1.5rem; } }
+    @media (max-width: 560px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html"><img src="../logo-primary.png" alt="Pine Key Marketing" class="nav-logo-img" /></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../index.html#process">Process</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <a href="../blog.html" class="back-link">← Back to Blog</a>
+
+  <div class="post-header">
+    <span class="post-tag">Social Media</span>
+    <h1 class="post-title">The Social Media Playbook for Utah Small Businesses in 2025</h1>
+    <p class="post-meta">Pine Key Marketing &nbsp;·&nbsp; Social Media</p>
+  </div>
+
+  <div class="post-body">
+    <p>Social media can be one of the most powerful tools in a small business's marketing arsenal — or it can be a significant drain on time and energy that produces almost no measurable results. The difference usually comes down to one thing: strategy. Most small businesses post reactively, inconsistently, and without a clear understanding of why they're on a given platform or what they want to achieve. This guide changes that.</p>
+
+    <h2>Pick the Right Platforms (Not All of Them)</h2>
+    <p>The single biggest mistake small businesses make on social media is trying to be everywhere. Instagram, Facebook, TikTok, LinkedIn, Pinterest, X, Threads — maintaining a quality presence across all of these is a full-time job for a team of people. For a small business owner managing everything yourself, it's a recipe for mediocre content on every platform.</p>
+
+    <p>Pick one or two platforms and be exceptional on them. Here's a quick breakdown of where different Utah businesses should focus:</p>
+
+    <h3>Instagram</h3>
+    <p>Best for: restaurants, retail, fitness, beauty, real estate, home services, hospitality, and any business where visual storytelling matters. Instagram's user base in Utah skews younger and is highly engaged with local businesses. Reels get the most reach; Stories build the most loyalty.</p>
+
+    <h3>Facebook</h3>
+    <p>Best for: local service businesses, professional services, community-oriented businesses, and anyone targeting a 35+ demographic. Facebook Groups are particularly powerful for community building and establishing local authority. Facebook Ads remain one of the most effective paid channels for local targeting.</p>
+
+    <h3>TikTok</h3>
+    <p>Best for: businesses willing to invest in short-form video and targeting a younger audience. The organic reach on TikTok is still extraordinary compared to other platforms — a single well-made video can reach tens of thousands of people in your area with no ad spend. Requires consistency and a willingness to show personality.</p>
+
+    <h3>LinkedIn</h3>
+    <p>Best for: B2B businesses, professional services, recruiting, and thought leadership. If your customers are other businesses or professionals, LinkedIn is where they are. It's underutilized by Utah's small business community, which means there's meaningful opportunity for those willing to show up consistently.</p>
+
+    <h2>What to Post</h2>
+    <p>The content that performs best on social media for local businesses falls into a few consistent categories:</p>
+
+    <h3>Behind the scenes</h3>
+    <p>People connect with people, not logos. Show your team, your process, your workspace. Let your audience see the humans behind the business. This builds trust and makes your brand feel approachable and real.</p>
+
+    <h3>Customer stories and results</h3>
+    <p>Before-and-after content, case studies, testimonials, and transformations are consistently the highest-performing content types for local businesses. Real results from real customers carry enormous credibility.</p>
+
+    <h3>Educational content</h3>
+    <p>Position yourself as the expert in your category. A landscaper who posts tips on lawn care. A dentist who explains what to look for in a cavity. A marketing agency (like us) that writes blog posts about what actually works. Educational content builds authority and keeps your audience coming back.</p>
+
+    <h3>Offers and announcements</h3>
+    <p>Promotions, new services, seasonal specials, and events. Keep these to roughly 20% of your content mix. Too many promotional posts train your audience to scroll past you.</p>
+
+    <h2>How Often to Post</h2>
+    <p>Consistency matters more than frequency. A business that posts three times a week, every week, will dramatically outperform one that posts seven times one week and goes dark for two months. Pick a cadence you can sustain and stick to it.</p>
+
+    <p>A realistic starting point for most small businesses:</p>
+    <ul>
+      <li>Instagram: 3–4 posts per week (mix of feed posts, Reels, and Stories)</li>
+      <li>Facebook: 3–4 posts per week</li>
+      <li>TikTok: 5+ videos per week for meaningful organic growth</li>
+      <li>LinkedIn: 2–3 posts per week</li>
+    </ul>
+
+    <h2>Engage, Don't Just Broadcast</h2>
+    <p>Social media is a two-way channel. Businesses that only post and never respond to comments, answer DMs, or engage with their community are leaving the most valuable part of the platform untouched. Engagement signals to the algorithm that your content is worth showing to more people — and it signals to your audience that there's a real human who cares on the other side.</p>
+
+    <p>Block 15 minutes each day to respond to comments and messages. Like and comment on posts from local businesses and community accounts. The more you engage, the more the platform rewards you with reach.</p>
+
+    <h2>Measure What Matters</h2>
+    <p>Don't obsess over follower count. Follower count is a vanity metric. What matters is reach (how many people saw your content), engagement (how many of them interacted with it), and conversions (how many took action — visited your website, called you, visited your store). Most platforms offer free analytics dashboards that show you this data. Review them monthly and adjust your content strategy based on what's actually working.</p>
+
+    <p>Social media is a long game. The businesses that win on these platforms aren't the ones who go viral once — they're the ones who show up consistently, provide genuine value, and build real relationships with their audience over time. That's the playbook.</p>
+  </div>
+
+  <div class="post-cta">
+    <h3>Want someone to handle your social media?</h3>
+    <p>Pine Key Marketing manages social media for Utah businesses — from strategy and content creation to scheduling, community management, and reporting. Let's talk.</p>
+    <a href="../index.html#contact" class="btn">Get In Touch</a>
+  </div>
+
+  <footer>
+    <img src="../logo-pk.png" alt="Pine Key Marketing" class="footer-logo-img" />
+    <span class="footer-copy">© 2025 Pine Key Marketing · Utah, USA</span>
+    <div class="footer-socials">
+      <a href="../blog.html">Blog</a>
+    </div>
+  </footer>
+
+</body>
+</html>

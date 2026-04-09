@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Marketing Metrics Actually Matter for Small Businesses — Pine Key Marketing</title>
+  <meta name="description" content="Likes and impressions feel good but don't pay the bills. Here are the marketing metrics that actually matter — and how to track them without drowning in data." />
+  <link rel="icon" type="image/png" href="../logo-pk.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root { --green: #C0ECAC; --black: #090909; --card-bg: #141414; --white: #F5F5F0; --muted: #F5F5F0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; line-height: 1.7; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); opacity: 0.025; pointer-events: none; z-index: 9999; }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.4rem 3rem; background: rgba(9,9,9,0.85); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(192,236,172,0.08); }
+    .nav-logo-img { height: 80px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.25s; opacity: 0.45; }
+    .nav-links a:hover { color: var(--green); opacity: 1; }
+    .post-header { padding: 12rem 3rem 4rem; max-width: 800px; border-bottom: 1px solid rgba(192,236,172,0.12); }
+    .post-tag { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 1.2rem; display: block; }
+    .post-title { font-family: 'Work Sans', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; line-height: 1.1; margin-bottom: 1.2rem; }
+    .post-meta { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); opacity: 0.45; }
+    .post-body { max-width: 720px; padding: 4rem 3rem; }
+    .post-body p { font-size: 1rem; line-height: 1.9; margin-bottom: 1.6rem; color: var(--muted); opacity: 0.85; }
+    .post-body h2 { font-family: 'Work Sans', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--white); margin: 2.5rem 0 1rem; }
+    .post-body h3 { font-family: 'Work Sans', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--green); margin: 2rem 0 0.6rem; }
+    .post-body ul { padding-left: 1.4rem; margin-bottom: 1.6rem; }
+    .post-body ul li { font-size: 1rem; line-height: 1.9; color: var(--muted); opacity: 0.85; margin-bottom: 0.4rem; }
+    .post-cta { margin: 4rem 3rem; padding: 3rem; background: var(--card-bg); border: 1px solid rgba(192,236,172,0.12); max-width: 720px; }
+    .post-cta h3 { font-family: 'Work Sans', sans-serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.8rem; }
+    .post-cta p { font-size: 0.92rem; color: var(--muted); opacity: 0.7; margin-bottom: 1.5rem; }
+    .btn { display: inline-block; padding: 0.85rem 2.2rem; border: 1px solid var(--green); color: var(--black); background: var(--green); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.25s, color 0.25s; }
+    .btn:hover { background: transparent; color: var(--green); }
+    footer { border-top: 1px solid rgba(192,236,172,0.1); padding: 2.5rem 3rem; display: flex; justify-content: space-between; align-items: center; }
+    .footer-logo-img { height: 36px; width: auto; }
+    .footer-copy { font-size: 0.75rem; color: var(--muted); opacity: 0.45; letter-spacing: 0.06em; }
+    .footer-socials { display: flex; gap: 1.5rem; }
+    .footer-socials a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; opacity: 0.45; }
+    .footer-socials a:hover { color: var(--green); opacity: 1; }
+    .back-link { display: inline-block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); text-decoration: none; margin: 2rem 3rem 0; }
+    .back-link:hover { opacity: 0.7; }
+    @media (max-width: 900px) { nav { padding: 1.2rem 1.5rem; } .post-header, .post-body, .post-cta { padding-left: 1.5rem; padding-right: 1.5rem; } .back-link { margin-left: 1.5rem; } footer { flex-direction: column; gap: 1.2rem; text-align: center; padding: 2rem 1.5rem; } }
+    @media (max-width: 560px) { .nav-links { display: none; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="../index.html"><img src="../logo-primary.png" alt="Pine Key Marketing" class="nav-logo-img" /></a>
+    <ul class="nav-links">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="../index.html#process">Process</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <a href="../blog.html" class="back-link">← Back to Blog</a>
+
+  <div class="post-header">
+    <span class="post-tag">Analytics</span>
+    <h1 class="post-title">What Marketing Metrics Actually Matter for Small Businesses</h1>
+    <p class="post-meta">Pine Key Marketing &nbsp;·&nbsp; Analytics</p>
+  </div>
+
+  <div class="post-body">
+    <p>There's no shortage of data available to small business owners today. Google Analytics, Meta Business Suite, Google Search Console, your email platform, your CRM — each one produces dashboards full of charts and numbers that can feel simultaneously overwhelming and oddly satisfying to look at. The problem is that most of those numbers don't tell you whether your marketing is actually working.</p>
+
+    <p>Vanity metrics — follower counts, impressions, page views — feel like progress. They go up, and going up feels good. But they don't pay the bills. In this post, we cut through the noise and focus on the metrics that actually matter for small businesses trying to grow.</p>
+
+    <h2>The Three Questions Every Metric Should Answer</h2>
+    <p>Before diving into specific metrics, apply this filter to everything you measure: Does this number tell me whether my marketing is generating revenue, or does it just tell me that activity is happening? Activity is not the same as results. A post can get 500 likes and generate zero customers. A campaign can run for three months and produce no measurable ROI. The metrics that matter are the ones that connect marketing activity to business outcomes.</p>
+
+    <h2>The Metrics That Actually Matter</h2>
+
+    <h3>Cost Per Lead (CPL)</h3>
+    <p>If you're running paid advertising, cost per lead is one of the most important numbers you can track. It tells you exactly how much you're spending to generate each inquiry, form submission, or phone call. If you spend $500 on Google Ads and get 10 leads, your CPL is $50. Whether that's good or bad depends entirely on your business — a $50 lead is a bargain for a roofing company and potentially unsustainable for a coffee shop.</p>
+
+    <p>Track CPL by channel so you can compare: are you getting cheaper leads from Google or Meta? From SEO or paid search? This data tells you where to put more money and where to pull back.</p>
+
+    <h3>Cost Per Acquisition (CPA)</h3>
+    <p>Cost per acquisition takes it one step further: how much are you spending to acquire a paying customer? This requires knowing your lead-to-customer conversion rate. If your CPL is $50 and 20% of your leads become customers, your CPA is $250. Again, context matters — a $250 customer acquisition cost is excellent for a service with a $3,000 average transaction value and terrible for one with a $200 average transaction value.</p>
+
+    <h3>Return on Ad Spend (ROAS)</h3>
+    <p>For any paid advertising, ROAS tells you how much revenue you're generating for every dollar spent. A 4x ROAS means you're generating $4 in revenue for every $1 in ad spend. Most businesses need a minimum of 3x ROAS to be profitable when factoring in margins and overhead — though this varies significantly by industry and business model.</p>
+
+    <h3>Website Conversion Rate</h3>
+    <p>Of all the people who visit your website, what percentage take a meaningful action — filling out a form, calling you, making a purchase? This is your website's conversion rate, and it's one of the most leveraged metrics in your business. Improving your conversion rate from 2% to 4% doubles the output of every traffic source without spending another dollar on advertising.</p>
+
+    <p>Benchmark: most local service business websites convert at 2–5%. If yours is below 2%, your website is likely losing you significant business and deserves immediate attention.</p>
+
+    <h3>Customer Lifetime Value (CLV)</h3>
+    <p>How much is a customer worth to your business over the entire relationship — not just the first transaction? A customer who gets their lawn mowed once is worth $150. A customer who hires you monthly for five years is worth $9,000. Understanding your CLV changes how you think about acquisition costs and where it's worth investing in marketing.</p>
+
+    <h3>Organic Search Traffic</h3>
+    <p>If you're investing in SEO, track the number of visitors arriving at your website through organic search (i.e., Google, Bing) month over month. This is available for free in Google Search Console. You want to see steady growth over time. You also want to know which search terms are driving that traffic — are they the high-intent terms most likely to lead to customers?</p>
+
+    <h2>Metrics Worth Monitoring (But Not Obsessing Over)</h2>
+
+    <h3>Engagement rate</h3>
+    <p>On social media, engagement rate (likes, comments, shares as a percentage of reach) is more meaningful than follower count or raw impressions. A small, highly engaged audience is more valuable than a large, passive one. But engagement rate still doesn't tell you whether your social presence is generating leads or customers — it just tells you that people are paying attention.</p>
+
+    <h3>Email open and click rates</h3>
+    <p>If you do email marketing, open rate tells you how compelling your subject lines are and click rate tells you how compelling your content is. Industry averages vary, but as a rough benchmark, open rates above 25% and click rates above 3% indicate healthy performance. More important is the trend — are these numbers improving over time?</p>
+
+    <h2>Building a Simple Dashboard</h2>
+    <p>You don't need sophisticated software to track what matters. A simple spreadsheet updated monthly works fine for most small businesses. Track: leads generated (by source), lead-to-customer conversion rate, revenue from new customers, and ad spend (if applicable). Review it monthly and ask one question: which channel is producing the best return, and what can I do to get more from it?</p>
+
+    <p>The businesses that win at marketing over the long run aren't the ones with the fanciest dashboards. They're the ones that track a small number of meaningful metrics, review them consistently, and make decisions based on what the data actually shows — not what feels good to look at.</p>
+  </div>
+
+  <div class="post-cta">
+    <h3>Want clearer visibility into what's working?</h3>
+    <p>Pine Key Marketing provides straightforward analytics and reporting for Utah businesses — tracking what matters, explaining what it means, and using it to improve your results month over month.</p>
+    <a href="../index.html#contact" class="btn">Get In Touch</a>
+  </div>
+
+  <footer>
+    <img src="../logo-pk.png" alt="Pine Key Marketing" class="footer-logo-img" />
+    <span class="footer-copy">© 2025 Pine Key Marketing · Utah, USA</span>
+    <div class="footer-socials">
+      <a href="../blog.html">Blog</a>
+    </div>
+  </footer>
+
+</body>
+</html>
