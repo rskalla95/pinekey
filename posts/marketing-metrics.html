@@ -20,17 +20,17 @@
     .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
     .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.25s; opacity: 0.45; }
     .nav-links a:hover { color: var(--green); opacity: 1; }
-    .post-header { padding: 12rem 3rem 4rem; max-width: 800px; border-bottom: 1px solid rgba(192,236,172,0.12); }
+    .post-header { padding: 12rem 3rem 4rem; max-width: 800px; margin: 0 auto; border-bottom: 1px solid rgba(192,236,172,0.12); }
     .post-tag { font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--green); margin-bottom: 1.2rem; display: block; }
     .post-title { font-family: 'Work Sans', sans-serif; font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 600; line-height: 1.1; margin-bottom: 1.2rem; }
     .post-meta { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); opacity: 0.45; }
-    .post-body { max-width: 720px; padding: 4rem 3rem; }
+    .post-body { max-width: 800px; padding: 4rem 3rem; margin: 0 auto; }
     .post-body p { font-size: 1rem; line-height: 1.9; margin-bottom: 1.6rem; color: var(--muted); opacity: 0.85; }
     .post-body h2 { font-family: 'Work Sans', sans-serif; font-size: 1.5rem; font-weight: 600; color: var(--white); margin: 2.5rem 0 1rem; }
     .post-body h3 { font-family: 'Work Sans', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--green); margin: 2rem 0 0.6rem; }
     .post-body ul { padding-left: 1.4rem; margin-bottom: 1.6rem; }
     .post-body ul li { font-size: 1rem; line-height: 1.9; color: var(--muted); opacity: 0.85; margin-bottom: 0.4rem; }
-    .post-cta { margin: 4rem 3rem; padding: 3rem; background: var(--card-bg); border: 1px solid rgba(192,236,172,0.12); max-width: 720px; }
+    .post-cta { margin: 0 auto 4rem; padding: 3rem; background: var(--card-bg); border: 1px solid rgba(192,236,172,0.12); max-width: 800px; }
     .post-cta h3 { font-family: 'Work Sans', sans-serif; font-size: 1.4rem; font-weight: 600; margin-bottom: 0.8rem; }
     .post-cta p { font-size: 0.92rem; color: var(--muted); opacity: 0.7; margin-bottom: 1.5rem; }
     .btn { display: inline-block; padding: 0.85rem 2.2rem; border: 1px solid var(--green); color: var(--black); background: var(--green); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.25s, color 0.25s; }
@@ -41,8 +41,8 @@
     .footer-socials { display: flex; gap: 1.5rem; }
     .footer-socials a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; opacity: 0.45; }
     .footer-socials a:hover { color: var(--green); opacity: 1; }
-    .back-link { display: inline-block; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); text-decoration: none; margin: 2rem 3rem 0; }
-    .back-link:hover { opacity: 0.7; }
+    .back-link { position: absolute; top: 9rem; left: 3rem; font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--green); text-decoration: none; opacity: 0.7; transition: opacity 0.2s; z-index: 10; }
+    .back-link:hover { opacity: 1; }
     @media (max-width: 900px) { nav { padding: 1.2rem 1.5rem; } .post-header, .post-body, .post-cta { padding-left: 1.5rem; padding-right: 1.5rem; } .back-link { margin-left: 1.5rem; } footer { flex-direction: column; gap: 1.2rem; text-align: center; padding: 2rem 1.5rem; } }
     @media (max-width: 560px) { .nav-links { display: none; } }
   </style>
