@@ -50,7 +50,7 @@
       border-bottom: 1px solid rgba(192,236,172,0.08);
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Work Sans', sans-serif;
       font-size: 1.35rem; font-weight: 600; letter-spacing: 0.04em;
       color: var(--green); text-decoration: none;
     }
@@ -158,9 +158,9 @@
       color: var(--green); margin-bottom: 1rem;
     }
     .section-title {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Work Sans', sans-serif;
       font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 300; line-height: 1.15; max-width: 20ch;
+      font-weight: 600; line-height: 1.15; max-width: 20ch;
     }
 
     /* ── CLIENTS ── */
@@ -211,8 +211,8 @@
     }
     .stat:hover::before { transform: scaleX(1); }
     .stat-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 3rem;
-      font-weight: 300; color: var(--green); line-height: 1; margin-bottom: 0.4rem;
+      font-family: 'Work Sans', sans-serif; font-size: 3rem;
+      font-weight: 600; color: var(--green); line-height: 1; margin-bottom: 0.4rem;
     }
     .stat-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 
@@ -228,16 +228,10 @@
     .service-card:hover { background: #181818; }
     .service-icon { font-size: 1.8rem; margin-bottom: 1.4rem; display: block; }
     .service-name {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
-      font-weight: 400; color: var(--white); margin-bottom: 0.8rem;
+      font-family: 'Work Sans', sans-serif; font-size: 1.5rem;
+      font-weight: 600; color: var(--white); margin-bottom: 0.8rem;
     }
     .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
-    .service-card::after {
-      content: '→'; position: absolute; bottom: 2.5rem; right: 2.5rem;
-      color: var(--green); font-size: 1.1rem; opacity: 0;
-      transform: translateX(-8px); transition: opacity 0.3s, transform 0.3s;
-    }
-    .service-card:hover::after { opacity: 1; transform: translateX(0); }
 
     /* ── PROCESS ── */
     .process { border-top: 1px solid rgba(192,236,172,0.12); }
@@ -245,10 +239,10 @@
     .step { padding: 2.5rem 2rem; border-right: 1px solid rgba(192,236,172,0.1); }
     .step:last-child { border-right: none; }
     .step-num {
-      font-family: 'Cormorant Garamond', serif; font-size: 4rem;
+      font-family: 'Work Sans', sans-serif; font-size: 4rem;
       font-weight: 300; color: rgba(192,236,172,0.15); line-height: 1; margin-bottom: 1rem;
     }
-    .step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--white); margin-bottom: 0.6rem; }
+    .step-title { font-family: 'Work Sans', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--white); margin-bottom: 0.6rem; }
     .step-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
 
     /* ── CONTACT ── */
@@ -265,8 +259,8 @@
     .contact-item:last-child { border-bottom: none; }
     .contact-item-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
     .contact-item-value {
-      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
-      font-weight: 300; color: var(--white); text-decoration: none; transition: color 0.2s;
+      font-family: 'Work Sans', sans-serif; font-size: 1.4rem;
+      font-weight: 600; color: var(--white); text-decoration: none; transition: color 0.2s;
     }
     .contact-item-value:hover { color: var(--green); }
     .contact-form { margin-top: 2rem; }
@@ -286,7 +280,7 @@
       padding: 2.5rem 3rem;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--green); }
+    .footer-logo { font-family: 'Work Sans', sans-serif; font-size: 1.1rem; font-weight: 600; color: var(--green); }
     .footer-copy { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; }
     .footer-socials { display: flex; gap: 1.5rem; }
     .footer-socials a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
@@ -367,9 +361,9 @@
   <section class="about" id="about">
     <div>
       <p class="section-label reveal">Who We Are</p>
-      <h2 class="section-title reveal">Marketing that moves at the speed of nature.</h2>
-      <p class="about-text reveal">We believe the best marketing feels effortless, like it was always supposed to be there. Pine Key blends data-backed strategy with genuine creative instinct to help Utah businesses grow with purpose and precision.</p>
-      <p class="about-text reveal" style="margin-top:1rem;">Whether you're a startup finding your footing or an established brand ready to amplify, we tune into what makes you distinct and turn it into results.</p>
+      <h2 class="section-title reveal">Marketing that moves the needle.</h2>
+      <p class="about-text reveal">Pine Key is a Utah-based marketing agency built on one principle: your growth is the only metric that matters. We combine sharp strategy with hands-on execution to help businesses stand out, connect with the right audience, and convert attention into revenue.</p>
+      <p class="about-text reveal" style="margin-top:1rem;">Whether you're launching something new or scaling what's already working, we bring the clarity, creativity, and accountability to get you there.</p>
     </div>
     <div class="about-stats">
       <div class="stat reveal"><div class="stat-num">100%</div><div class="stat-label">Client Focus</div></div>
@@ -395,24 +389,24 @@
         <p class="service-desc">From content calendars to community engagement, we handle your social presence so you can focus on running your business while your audience grows.</p>
       </div>
       <div class="service-card reveal">
-        <span class="service-icon">◬</span>
-        <h3 class="service-name">Paid Advertising</h3>
-        <p class="service-desc">Data-driven ad campaigns across Meta, Google, and beyond. We optimize relentlessly to ensure every dollar you spend is a dollar working hard for you.</p>
-      </div>
-      <div class="service-card reveal">
-        <span class="service-icon">◇</span>
-        <h3 class="service-name">Content Creation</h3>
-        <p class="service-desc">Photos, video, copy, and creative direction. We produce content that captures your brand's essence and compels your audience to act.</p>
-      </div>
-      <div class="service-card reveal">
         <span class="service-icon">○</span>
         <h3 class="service-name">SEO &amp; Web Presence</h3>
         <p class="service-desc">We make sure the right people find you at the right time. From local search to long-form content, we grow your organic footprint steadily and sustainably.</p>
       </div>
       <div class="service-card reveal">
+        <span class="service-icon">◬</span>
+        <h3 class="service-name">Paid Advertising</h3>
+        <p class="service-desc">Data-driven ad campaigns across Meta, Google, and beyond. We optimize relentlessly to ensure every dollar you spend is a dollar working hard for you.</p>
+      </div>
+      <div class="service-card reveal">
         <span class="service-icon">△</span>
         <h3 class="service-name">Analytics &amp; Reporting</h3>
         <p class="service-desc">Clear, honest reporting with insights you can actually use. We track what matters, explain what it means, and adjust strategy in real time.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">▭</span>
+        <h3 class="service-name">Web Design &amp; Management</h3>
+        <p class="service-desc">From first impression to ongoing performance, we design and manage websites that look great, load fast, and convert visitors into customers.</p>
       </div>
     </div>
   </section>
@@ -529,8 +523,10 @@
       wrapper.addEventListener('mouseenter', () => hovering = true);
       wrapper.addEventListener('mouseleave', () => { hovering = false; wheelVelocity = 0; });
       wrapper.addEventListener('wheel', (e) => {
-        e.preventDefault();
-        wheelVelocity += e.deltaY * 0.25;
+        if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+          e.preventDefault();
+          wheelVelocity += e.deltaX * 0.25;
+        }
       }, { passive: false });
 
       requestAnimationFrame(tick);
