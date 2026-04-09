@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="logo-stacked.png" />
   <title>Pine Key Marketing: Naturally In Tune</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -162,6 +163,34 @@
       font-weight: 300; line-height: 1.15; max-width: 20ch;
     }
 
+    /* ── CLIENTS ── */
+    .clients {
+      padding: 2.5rem 0;
+      border-top: 1px solid rgba(192,236,172,0.12);
+      text-align: center;
+      background: #E8E8E3;
+    }
+    .clients-label {
+      font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--muted); opacity: 0.5; margin-bottom: 2.5rem;
+    }
+    .clients-track-wrapper {
+      overflow: hidden;
+      mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+    }
+    .clients-grid {
+      display: flex; align-items: center;
+    }
+    .client-logo {
+      flex: 0 0 calc(100vw / 7);
+      height: 126px;
+      object-fit: contain;
+      padding: 0 2rem;
+      transition: transform 0.25s ease;
+    }
+    .client-logo:hover { transform: scale(1.1); }
+
     /* ── ABOUT ── */
     .about {
       display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
@@ -319,6 +348,21 @@
     </div>
   </header>
 
+  <!-- CLIENTS -->
+  <section class="clients">
+    <div class="clients-track-wrapper">
+      <div class="clients-grid">
+        <img src="logos/longday-logo.png" alt="Long Day" class="client-logo" />
+        <img src="logos/skoshe-logo.png" alt="Skoshe" class="client-logo" />
+        <img src="logos/boldworks-logo.png" alt="Bold Works" class="client-logo" />
+        <img src="logos/upsstore-logo.png" alt="The UPS Store" class="client-logo" />
+        <img src="logos/teamupathletics-logo.png" alt="Team Up Athletics" class="client-logo" />
+        <img src="logos/qss-logo.png" alt="Quality Support Services" class="client-logo" />
+        <img src="logos/crumbl-logo.png" alt="Crumbl" class="client-logo" />
+      </div>
+    </div>
+  </section>
+
   <!-- ABOUT -->
   <section class="about" id="about">
     <div>
@@ -409,7 +453,7 @@
       <div class="contact-info reveal">
         <div class="contact-item">
           <span class="contact-item-label">Email</span>
-          <a href="mailto:hello@pinekeymarketing.com" class="contact-item-value">hello@pinekeymarketing.com</a>
+          <a href="mailto:pinekeyllc@gmail.com" class="contact-item-value">pinekeyllc@gmail.com</a>
         </div>
         <div class="contact-item">
           <span class="contact-item-label">Instagram</span>
@@ -435,7 +479,7 @@
           <label>What can we help with?</label>
           <textarea placeholder="Tell us about your business and goals..."></textarea>
         </div>
-        <a href="mailto:hello@pinekeymarketing.com" class="btn">Send Message</a>
+        <a href="mailto:pinekeyllc@gmail.com" class="btn">Send Message</a>
       </div>
     </div>
   </section>
@@ -450,6 +494,48 @@
   </footer>
 
   <script>
+    // ── MARQUEE ──
+    (function () {
+      const track   = document.querySelector('.clients-grid');
+      const wrapper = document.querySelector('.clients-track-wrapper');
+
+      // Clone logos for seamless loop
+      Array.from(track.querySelectorAll('.client-logo'))
+        .forEach(logo => track.appendChild(logo.cloneNode(true)));
+
+      let position     = 0;
+      let wheelVelocity = 0;
+      let hovering     = false;
+      const BASE_SPEED = 0.5; // px per frame (~30px/s at 60fps)
+
+      function setWidth() { return track.scrollWidth / 2; }
+
+      function tick() {
+        if (!hovering) {
+          position += BASE_SPEED;
+        } else if (Math.abs(wheelVelocity) > 0.05) {
+          position += wheelVelocity;
+          wheelVelocity *= 0.92; // friction
+        }
+
+        const sw = setWidth();
+        if (position >= sw) position -= sw;
+        if (position < 0)   position += sw;
+
+        track.style.transform = `translateX(${-position}px)`;
+        requestAnimationFrame(tick);
+      }
+
+      wrapper.addEventListener('mouseenter', () => hovering = true);
+      wrapper.addEventListener('mouseleave', () => { hovering = false; wheelVelocity = 0; });
+      wrapper.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        wheelVelocity += e.deltaY * 0.25;
+      }, { passive: false });
+
+      requestAnimationFrame(tick);
+    })();
+
     // ── ROTATING WORDS ──
     (function () {
       const WORDS = ['Brand.', 'Business.', 'Customers.', 'Goals.', 'Story.'];
