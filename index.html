@@ -248,12 +248,15 @@
     /* ── CONTACT ── */
     .contact {
       border-top: 1px solid rgba(192,236,172,0.12);
-      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
+      padding: 4rem 3rem;
+      display: flex; flex-direction: column; align-items: center; text-align: center;
     }
-    .contact-info { margin-top: 2rem; }
+    .contact .section-title { max-width: 100%; }
+    .contact-info { margin-top: 1.2rem; display: flex; flex-wrap: wrap; justify-content: center; gap: 0 4rem; }
+    .contact-item { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
     .contact-item {
       display: flex; flex-direction: column;
-      margin-bottom: 2rem; padding-bottom: 2rem;
+      margin-bottom: 1.2rem; padding-bottom: 1.2rem;
       border-bottom: 1px solid rgba(192,236,172,0.08);
     }
     .contact-item:last-child { border-bottom: none; }
@@ -444,11 +447,15 @@
   <section class="contact" id="contact">
     <div>
       <p class="section-label reveal">Get In Touch</p>
-      <h2 class="section-title reveal">Let's tune into something great together.</h2>
+      <h2 class="section-title reveal">Ready to grow your business?</h2>
       <div class="contact-info reveal">
         <div class="contact-item">
           <span class="contact-item-label">Email</span>
           <a href="mailto:pinekeyllc@gmail.com" class="contact-item-value">pinekeyllc@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Phone</span>
+          <a href="tel:4356711468" class="contact-item-value">435-671-1468</a>
         </div>
         <div class="contact-item">
           <span class="contact-item-label">Instagram</span>
@@ -460,23 +467,6 @@
         </div>
       </div>
     </div>
-    <div>
-      <div class="contact-form reveal">
-        <div class="form-group">
-          <label>Your Name</label>
-          <input type="text" placeholder="Jane Smith" />
-        </div>
-        <div class="form-group">
-          <label>Email Address</label>
-          <input type="email" placeholder="jane@company.com" />
-        </div>
-        <div class="form-group">
-          <label>What can we help with?</label>
-          <textarea placeholder="Tell us about your business and goals..."></textarea>
-        </div>
-        <a href="mailto:pinekeyllc@gmail.com" class="btn">Send Message</a>
-      </div>
-    </div>
   </section>
 
   <!-- FOOTER -->
@@ -484,7 +474,7 @@
     <img src="logo-pk.png" alt="Pine Key Marketing" class="footer-logo-img" />
     <span class="footer-copy">© 2025 Pine Key Marketing · Utah, USA</span>
     <div class="footer-socials">
-      <a href="https://instagram.com/pinekeymarketing" target="_blank">Instagram</a>
+      <a href="blog.html">Blog</a>
     </div>
   </footer>
 

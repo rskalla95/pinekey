@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Pine Key Marketing</title>
+  <meta name="description" content="Marketing insights, tips, and strategy from Pine Key Marketing — Utah's digital marketing agency." />
+  <link rel="icon" type="image/png" href="logo-pk.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #C0ECAC;
+      --green-mid: rgba(192, 236, 172, 0.4);
+      --black: #090909;
+      --card-bg: #141414;
+      --white: #F5F5F0;
+      --muted: #F5F5F0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025; pointer-events: none; z-index: 9999;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 3rem;
+      background: rgba(9,9,9,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(192,236,172,0.08);
+    }
+    .nav-logo-img { height: 80px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--green); }
+
+    /* HEADER */
+    .blog-header {
+      padding: 12rem 3rem 5rem;
+      border-bottom: 1px solid rgba(192,236,172,0.12);
+    }
+    .blog-eyebrow {
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1.2rem;
+    }
+    .blog-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 600; line-height: 1.05;
+    }
+    .blog-subtitle {
+      margin-top: 1.2rem; max-width: 48ch;
+      color: var(--muted); font-size: 1rem; opacity: 0.7;
+    }
+
+    /* GRID */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1px;
+      padding: 0;
+    }
+
+    /* CARDS */
+    .post-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(192,236,172,0.08);
+      padding: 2.5rem;
+      display: flex; flex-direction: column;
+      transition: background 0.3s;
+      text-decoration: none; color: inherit;
+    }
+    .post-card:hover { background: #181818; }
+    .post-tag {
+      font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1rem;
+    }
+    .post-title {
+      font-family: 'Work Sans', sans-serif;
+      font-size: 1.35rem; font-weight: 600;
+      line-height: 1.3; margin-bottom: 1rem;
+      color: var(--white);
+    }
+    .post-excerpt {
+      font-size: 0.88rem; color: var(--muted);
+      opacity: 0.7; line-height: 1.8; flex: 1;
+    }
+    .post-meta {
+      margin-top: 2rem; padding-top: 1.2rem;
+      border-top: 1px solid rgba(192,236,172,0.08);
+      font-size: 0.72rem; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); opacity: 0.45;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(192,236,172,0.1);
+      padding: 2.5rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo-img { height: 36px; width: auto; }
+    .footer-copy { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; opacity: 0.45; }
+    .footer-socials { display: flex; gap: 1.5rem; }
+    .footer-socials a {
+      font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s; opacity: 0.45;
+    }
+    .footer-socials a:hover { color: var(--green); opacity: 1; }
+
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .blog-header { padding: 10rem 1.5rem 4rem; }
+      footer { flex-direction: column; gap: 1.2rem; text-align: center; padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 560px) {
+      .nav-links { display: none; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html"><img src="logo-primary.png" alt="Pine Key Marketing" class="nav-logo-img" /></a>
+    <ul class="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="blog-header">
+    <p class="blog-eyebrow">Pine Key Marketing</p>
+    <h1 class="blog-title">Insights & Strategy</h1>
+    <p class="blog-subtitle">Marketing tips, industry trends, and actionable advice for Utah businesses ready to grow.</p>
+  </div>
+
+  <div class="blog-grid">
+
+    <article class="post-card">
+      <span class="post-tag">Local SEO</span>
+      <h2 class="post-title">How Utah Businesses Can Dominate Local Search in 2025</h2>
+      <p class="post-excerpt">Ranking on Google in your own backyard is one of the highest-ROI moves a local business can make. We break down the exact steps Utah businesses should take to own their local search results — from Google Business Profile optimization to local link building and review strategy.</p>
+      <div class="post-meta">Pine Key Marketing &nbsp;·&nbsp; Local SEO</div>
+    </article>
+
+    <article class="post-card">
+      <span class="post-tag">Paid Advertising</span>
+      <h2 class="post-title">Google Ads vs. Meta Ads: Which Is Right for Your Utah Business?</h2>
+      <p class="post-excerpt">Both platforms work — but they work differently. Google captures demand that already exists. Meta creates it. Understanding when to use each, how to budget between them, and what results to expect can save you thousands in wasted ad spend and dramatically improve your return.</p>
+      <div class="post-meta">Pine Key Marketing &nbsp;·&nbsp; Paid Advertising</div>
+    </article>
+
+    <article class="post-card">
+      <span class="post-tag">Brand Strategy</span>
+      <h2 class="post-title">Why Most Small Business Brands Blend In (And How to Fix It)</h2>
+      <p class="post-excerpt">A logo is not a brand. A color palette is not a brand. Your brand is the sum of every impression your business makes — and most small businesses are leaving a forgettable one. Here's what it actually takes to build a brand that people remember and trust.</p>
+      <div class="post-meta">Pine Key Marketing &nbsp;·&nbsp; Brand Strategy</div>
+    </article>
+
+    <article class="post-card">
+      <span class="post-tag">Social Media</span>
+      <h2 class="post-title">The Social Media Playbook for Utah Small Businesses in 2025</h2>
+      <p class="post-excerpt">You don't need to be on every platform. You need to be exceptional on the right ones. We walk through which social channels make sense for different business types in Utah, what to post, how often to post it, and how to measure whether any of it is actually working.</p>
+      <div class="post-meta">Pine Key Marketing &nbsp;·&nbsp; Social Media</div>
+    </article>
+
+    <article class="post-card">
+      <span class="post-tag">Web Design</span>
+      <h2 class="post-title">Your Website Is Losing You Customers — Here's Why</h2>
+      <p class="post-excerpt">Most business websites were built to exist, not to convert. Slow load times, unclear messaging, and a lack of obvious next steps are silently costing you leads every day. We cover the most common website mistakes we see — and exactly how to fix them.</p>
+      <div class="post-meta">Pine Key Marketing &nbsp;·&nbsp; Web Design</div>
+    </article>
+
+    <article class="post-card">
+      <span class="post-tag">Analytics</span>
+      <h2 class="post-title">What Marketing Metrics Actually Matter for Small Businesses</h2>
+      <p class="post-excerpt">Vanity metrics feel good but don't pay the bills. Likes, impressions, and follower counts tell you almost nothing about whether your marketing is working. We break down the numbers that actually matter — and how to track them without drowning in dashboards.</p>
+      <div class="post-meta">Pine Key Marketing &nbsp;·&nbsp; Analytics</div>
+    </article>
+
+  </div>
+
+  <footer>
+    <img src="logo-pk.png" alt="Pine Key Marketing" class="footer-logo-img" />
+    <span class="footer-copy">© 2025 Pine Key Marketing · Utah, USA</span>
+    <div class="footer-socials">
+      <a href="blog.html">Blog</a>
+    </div>
+  </footer>
+
+</body>
+</html>
