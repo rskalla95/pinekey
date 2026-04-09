@@ -10,17 +10,14 @@
   <style>
     :root {
       --green: #C0ECAC;
-      --green-dim: rgba(192, 236, 172, 0.15);
       --green-mid: rgba(192, 236, 172, 0.4);
       --black: #090909;
-      --off-black: #111111;
       --card-bg: #141414;
       --white: #F5F5F0;
       --muted: rgba(245, 245, 240, 0.45);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -32,7 +29,6 @@
       overflow-x: hidden;
     }
 
-    /* ── NOISE OVERLAY ── */
     body::before {
       content: '';
       position: fixed;
@@ -45,441 +41,219 @@
 
     /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 1.4rem 3rem;
       background: rgba(9,9,9,0.85);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(192,236,172,0.08);
     }
-
     .nav-logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.35rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: var(--green);
-      text-decoration: none;
+      font-size: 1.35rem; font-weight: 600; letter-spacing: 0.04em;
+      color: var(--green); text-decoration: none;
     }
-
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
+    .nav-logo-img {
+      height: 36px;
+      width: auto;
+      display: block;
     }
-
     .nav-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
       transition: color 0.25s;
     }
-
     .nav-links a:hover { color: var(--green); }
 
     /* ── HERO ── */
     .hero {
       min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      display: flex; flex-direction: column; justify-content: center;
       padding: 10rem 3rem 6rem;
-      position: relative;
-      overflow: hidden;
+      position: relative; overflow: hidden;
     }
-
-    /* halftone grid background inspired by their branding */
     .hero::before {
       content: '';
-      position: absolute;
-      inset: 0;
-      background-image:
-        radial-gradient(circle, rgba(192,236,172,0.18) 1px, transparent 1px);
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(192,236,172,0.18) 1px, transparent 1px);
       background-size: 28px 28px;
       mask-image: radial-gradient(ellipse 80% 60% at 70% 50%, black 20%, transparent 80%);
       -webkit-mask-image: radial-gradient(ellipse 80% 60% at 70% 50%, black 20%, transparent 80%);
       pointer-events: none;
     }
-
     .hero-eyebrow {
-      font-size: 0.72rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 1.6rem;
-      opacity: 0;
-      animation: fadeUp 0.8s 0.2s ease forwards;
+      font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1.6rem;
+      opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
     }
-
     .hero-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(4rem, 10vw, 9rem);
-      font-weight: 300;
-      line-height: 1.0;
-      letter-spacing: -0.02em;
-      max-width: 14ch;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.4s ease forwards;
+      font-weight: 300; line-height: 1.0; letter-spacing: -0.02em;
+      opacity: 0; animation: fadeUp 0.9s 0.4s ease forwards;
     }
+    .hero-title em { font-style: italic; color: var(--green); }
 
-    .hero-title em {
-      font-style: italic;
-      color: var(--green);
+    /* ── ROTATING WORD ── */
+    .rotating-line { display: block; }
+    .rotating-word-wrapper {
+      display: inline-block;
+      position: relative;
+    }
+    /* invisible sizer keeps the wrapper as wide as the longest word */
+    .word-sizer {
+      visibility: hidden;
+      display: inline-block;
+      pointer-events: none;
+    }
+    .rotating-word {
+      position: absolute;
+      top: 0; left: 0;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateX(48px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .rotating-word.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .rotating-word.exiting {
+      opacity: 0;
+      transform: translateX(-48px);
     }
 
     .hero-sub {
-      margin-top: 2.5rem;
-      max-width: 42ch;
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.8;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.6s ease forwards;
+      margin-top: 2.5rem; max-width: 42ch;
+      color: var(--muted); font-size: 1rem; line-height: 1.8;
+      opacity: 0; animation: fadeUp 0.9s 0.6s ease forwards;
     }
-
     .hero-cta {
       margin-top: 3rem;
-      opacity: 0;
-      animation: fadeUp 0.9s 0.8s ease forwards;
+      opacity: 0; animation: fadeUp 0.9s 0.8s ease forwards;
     }
-
     .btn {
-      display: inline-block;
-      padding: 0.85rem 2.2rem;
-      border: 1px solid var(--green);
-      color: var(--black);
-      background: var(--green);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: background 0.25s, color 0.25s;
+      display: inline-block; padding: 0.85rem 2.2rem;
+      border: 1px solid var(--green); color: var(--black); background: var(--green);
+      font-family: 'DM Sans', sans-serif; font-size: 0.8rem;
+      font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none; transition: background 0.25s, color 0.25s;
     }
+    .btn:hover { background: transparent; color: var(--green); }
+    .btn-outline { background: transparent; color: var(--green); margin-left: 1rem; }
+    .btn-outline:hover { background: var(--green); color: var(--black); }
 
-    .btn:hover {
-      background: transparent;
-      color: var(--green);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--green);
-      margin-left: 1rem;
-    }
-
-    .btn-outline:hover {
-      background: var(--green);
-      color: var(--black);
-    }
-
-    /* ── SECTION BASE ── */
-    section {
-      padding: 7rem 3rem;
-    }
-
+    /* ── SECTIONS ── */
+    section { padding: 7rem 3rem; }
     .section-label {
-      font-size: 0.7rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 1rem;
+      font-size: 0.7rem; letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--green); margin-bottom: 1rem;
     }
-
     .section-title {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(2.2rem, 5vw, 3.8rem);
-      font-weight: 300;
-      line-height: 1.15;
-      max-width: 20ch;
+      font-weight: 300; line-height: 1.15; max-width: 20ch;
     }
 
     /* ── ABOUT ── */
     .about {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 5rem;
-      align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
       border-top: 1px solid rgba(192,236,172,0.12);
     }
-
-    .about-text {
-      color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.9;
-      margin-top: 1.8rem;
-    }
-
-    .about-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
-
+    .about-text { color: var(--muted); font-size: 1rem; line-height: 1.9; margin-top: 1.8rem; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
     .stat {
-      padding: 2rem;
-      border: 1px solid rgba(192,236,172,0.1);
-      background: var(--card-bg);
-      position: relative;
-      overflow: hidden;
+      padding: 2rem; border: 1px solid rgba(192,236,172,0.1);
+      background: var(--card-bg); position: relative; overflow: hidden;
       transition: border-color 0.3s;
     }
-
     .stat:hover { border-color: var(--green-mid); }
-
     .stat::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: var(--green);
-      transform: scaleX(0);
-      transform-origin: left;
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--green); transform: scaleX(0); transform-origin: left;
       transition: transform 0.4s ease;
     }
-
     .stat:hover::before { transform: scaleX(1); }
-
     .stat-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
-      font-weight: 300;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 0.4rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 3rem;
+      font-weight: 300; color: var(--green); line-height: 1; margin-bottom: 0.4rem;
     }
-
-    .stat-label {
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
+    .stat-label { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
 
     /* ── SERVICES ── */
     .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5px;
-      margin-top: 4rem;
-      border: 1.5px solid rgba(192,236,172,0.1);
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px; margin-top: 4rem;
     }
-
     .service-card {
-      background: var(--card-bg);
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      transition: background 0.3s;
-      border: 1.5px solid rgba(192,236,172,0.1);
+      background: var(--card-bg); padding: 2.5rem; position: relative; overflow: hidden;
+      transition: background 0.3s; border: 1.5px solid rgba(192,236,172,0.1);
     }
-
     .service-card:hover { background: #181818; }
-
-    .service-icon {
-      font-size: 1.8rem;
-      margin-bottom: 1.4rem;
-      display: block;
-    }
-
+    .service-icon { font-size: 1.8rem; margin-bottom: 1.4rem; display: block; }
     .service-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem;
-      font-weight: 400;
-      color: var(--white);
-      margin-bottom: 0.8rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
+      font-weight: 400; color: var(--white); margin-bottom: 0.8rem;
     }
-
-    .service-desc {
-      font-size: 0.88rem;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
+    .service-desc { font-size: 0.88rem; color: var(--muted); line-height: 1.8; }
     .service-card::after {
-      content: '→';
-      position: absolute;
-      bottom: 2.5rem;
-      right: 2.5rem;
-      color: var(--green);
-      font-size: 1.1rem;
-      opacity: 0;
-      transform: translateX(-8px);
-      transition: opacity 0.3s, transform 0.3s;
+      content: '→'; position: absolute; bottom: 2.5rem; right: 2.5rem;
+      color: var(--green); font-size: 1.1rem; opacity: 0;
+      transform: translateX(-8px); transition: opacity 0.3s, transform 0.3s;
     }
-
-    .service-card:hover::after {
-      opacity: 1;
-      transform: translateX(0);
-    }
+    .service-card:hover::after { opacity: 1; transform: translateX(0); }
 
     /* ── PROCESS ── */
-    .process {
-      border-top: 1px solid rgba(192,236,172,0.12);
-    }
-
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      margin-top: 4rem;
-    }
-
-    .step {
-      padding: 2.5rem 2rem;
-      border-right: 1px solid rgba(192,236,172,0.1);
-      position: relative;
-    }
-
+    .process { border-top: 1px solid rgba(192,236,172,0.12); }
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 4rem; }
+    .step { padding: 2.5rem 2rem; border-right: 1px solid rgba(192,236,172,0.1); }
     .step:last-child { border-right: none; }
-
     .step-num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 4rem;
-      font-weight: 300;
-      color: rgba(192,236,172,0.15);
-      line-height: 1;
-      margin-bottom: 1rem;
+      font-family: 'Cormorant Garamond', serif; font-size: 4rem;
+      font-weight: 300; color: rgba(192,236,172,0.15); line-height: 1; margin-bottom: 1rem;
     }
-
-    .step-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.25rem;
-      color: var(--white);
-      margin-bottom: 0.6rem;
-    }
-
-    .step-desc {
-      font-size: 0.84rem;
-      color: var(--muted);
-      line-height: 1.75;
-    }
+    .step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; color: var(--white); margin-bottom: 0.6rem; }
+    .step-desc { font-size: 0.84rem; color: var(--muted); line-height: 1.75; }
 
     /* ── CONTACT ── */
     .contact {
       border-top: 1px solid rgba(192,236,172,0.12);
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6rem;
-      align-items: start;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;
     }
-
-    .contact-info {
-      margin-top: 2rem;
-    }
-
+    .contact-info { margin-top: 2rem; }
     .contact-item {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
+      display: flex; flex-direction: column;
+      margin-bottom: 2rem; padding-bottom: 2rem;
       border-bottom: 1px solid rgba(192,236,172,0.08);
     }
-
     .contact-item:last-child { border-bottom: none; }
-
-    .contact-item-label {
-      font-size: 0.68rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 0.4rem;
-    }
-
+    .contact-item-label { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 0.4rem; }
     .contact-item-value {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 300;
-      color: var(--white);
-      text-decoration: none;
-      transition: color 0.2s;
+      font-family: 'Cormorant Garamond', serif; font-size: 1.4rem;
+      font-weight: 300; color: var(--white); text-decoration: none; transition: color 0.2s;
     }
-
     .contact-item-value:hover { color: var(--green); }
-
-    /* contact form */
-    .contact-form {
-      margin-top: 2rem;
+    .contact-form { margin-top: 2rem; }
+    .form-group { margin-bottom: 1.4rem; }
+    .form-group label { display: block; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.5rem; }
+    .form-group input, .form-group textarea {
+      width: 100%; background: var(--card-bg); border: 1px solid rgba(192,236,172,0.12);
+      color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+      padding: 0.85rem 1rem; outline: none; transition: border-color 0.25s; resize: none;
     }
-
-    .form-group {
-      margin-bottom: 1.4rem;
-    }
-
-    .form-group label {
-      display: block;
-      font-size: 0.68rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 0.5rem;
-    }
-
-    .form-group input,
-    .form-group textarea {
-      width: 100%;
-      background: var(--card-bg);
-      border: 1px solid rgba(192,236,172,0.12);
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 0.9rem;
-      padding: 0.85rem 1rem;
-      outline: none;
-      transition: border-color 0.25s;
-      resize: none;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-      border-color: var(--green);
-    }
-
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--green); }
     .form-group textarea { height: 130px; }
 
     /* ── FOOTER ── */
     footer {
       border-top: 1px solid rgba(192,236,172,0.1);
       padding: 2.5rem 3rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
     }
-
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem;
-      font-weight: 600;
-      color: var(--green);
-    }
-
-    .footer-copy {
-      font-size: 0.75rem;
-      color: var(--muted);
-      letter-spacing: 0.06em;
-    }
-
-    .footer-socials {
-      display: flex;
-      gap: 1.5rem;
-    }
-
-    .footer-socials a {
-      font-size: 0.72rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--muted);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
+    .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--green); }
+    .footer-copy { font-size: 0.75rem; color: var(--muted); letter-spacing: 0.06em; }
+    .footer-socials { display: flex; gap: 1.5rem; }
+    .footer-socials a { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
     .footer-socials a:hover { color: var(--green); }
 
     /* ── ANIMATIONS ── */
@@ -487,43 +261,22 @@
       from { opacity: 0; transform: translateY(28px); }
       to   { opacity: 1; transform: translateY(0); }
     }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.75s ease, transform 0.75s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       nav { padding: 1.2rem 1.5rem; }
       .nav-links { gap: 1.5rem; }
-
       section { padding: 5rem 1.5rem; }
       .hero { padding: 9rem 1.5rem 5rem; }
-
       .about { grid-template-columns: 1fr; gap: 3rem; }
       .about-stats { grid-template-columns: 1fr 1fr; }
-
       .process-steps { grid-template-columns: 1fr 1fr; }
       .step { border-right: none; border-bottom: 1px solid rgba(192,236,172,0.1); }
-      .step:nth-child(even) { border-right: none; }
-
       .contact { grid-template-columns: 1fr; gap: 3rem; }
-
-      footer {
-        flex-direction: column;
-        gap: 1.2rem;
-        text-align: center;
-        padding: 2rem 1.5rem;
-      }
+      footer { flex-direction: column; gap: 1.2rem; text-align: center; padding: 2rem 1.5rem; }
     }
-
     @media (max-width: 560px) {
       .nav-links { display: none; }
       .about-stats { grid-template-columns: 1fr; }
@@ -537,7 +290,7 @@
 
   <!-- NAV -->
   <nav>
-    <a class="nav-logo" href="#">Pine Key</a>
+    <a class="nav-logo" href="#"><img src="logo-primary.png" alt="Pine Key Marketing" class="nav-logo-img" /></a>
     <ul class="nav-links">
       <li><a href="#services">Services</a></li>
       <li><a href="#process">Process</a></li>
@@ -548,7 +301,11 @@
   <!-- HERO -->
   <header class="hero">
     <p class="hero-eyebrow">Utah's Digital Marketing Agency · Est. 2025</p>
-    <h1 class="hero-title">Naturally<br /><em>In Tune</em><br />With Your Brand.</h1>
+    <h1 class="hero-title">
+      Naturally<br />
+      <em>In Tune</em><br />
+      <span class="rotating-line">With Your&nbsp;<span class="rotating-word-wrapper" id="rotator"><span class="word-sizer" id="word-sizer"></span></span></span>
+    </h1>
     <p class="hero-sub">Pine Key Marketing is a results-driven agency that connects your business with the right audience — authentically, strategically, and at the right moment.</p>
     <div class="hero-cta">
       <a href="#contact" class="btn">Get In Touch</a>
@@ -562,25 +319,13 @@
       <p class="section-label reveal">Who We Are</p>
       <h2 class="section-title reveal">Marketing that moves at the speed of nature.</h2>
       <p class="about-text reveal">We believe the best marketing feels effortless — like it was always supposed to be there. Pine Key blends data-backed strategy with genuine creative instinct to help Utah businesses grow with purpose and precision.</p>
-      <p class="about-text reveal" style="margin-top: 1rem;">Whether you're a startup finding your footing or an established brand ready to amplify, we tune into what makes you distinct and turn it into results.</p>
+      <p class="about-text reveal" style="margin-top:1rem;">Whether you're a startup finding your footing or an established brand ready to amplify, we tune into what makes you distinct and turn it into results.</p>
     </div>
     <div class="about-stats">
-      <div class="stat reveal">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Client Focus</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-num">ROI</div>
-        <div class="stat-label">First Mindset</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-num">Utah</div>
-        <div class="stat-label">Based & Rooted</div>
-      </div>
-      <div class="stat reveal">
-        <div class="stat-num">2025</div>
-        <div class="stat-label">Founded</div>
-      </div>
+      <div class="stat reveal"><div class="stat-num">100%</div><div class="stat-label">Client Focus</div></div>
+      <div class="stat reveal"><div class="stat-num">ROI</div><div class="stat-label">First Mindset</div></div>
+      <div class="stat reveal"><div class="stat-num">Utah</div><div class="stat-label">Based &amp; Rooted</div></div>
+      <div class="stat reveal"><div class="stat-num">2025</div><div class="stat-label">Founded</div></div>
     </div>
   </section>
 
@@ -611,12 +356,12 @@
       </div>
       <div class="service-card reveal">
         <span class="service-icon">○</span>
-        <h3 class="service-name">SEO & Web Presence</h3>
+        <h3 class="service-name">SEO &amp; Web Presence</h3>
         <p class="service-desc">We make sure the right people find you at the right time. From local search to long-form content, we grow your organic footprint steadily and sustainably.</p>
       </div>
       <div class="service-card reveal">
         <span class="service-icon">△</span>
-        <h3 class="service-name">Analytics & Reporting</h3>
+        <h3 class="service-name">Analytics &amp; Reporting</h3>
         <p class="service-desc">Clear, honest reporting with insights you can actually use. We track what matters, explain what it means, and adjust strategy in real time.</p>
       </div>
     </div>
@@ -699,17 +444,50 @@
   </footer>
 
   <script>
-    // Intersection observer for reveal animations
-    const observer = new IntersectionObserver((entries) => {
+    // ── ROTATING WORDS ──
+    (function () {
+      const WORDS = ['Brand.', 'Business.', 'Customers.', 'Goals.', 'Story.'];
+      const wrapper = document.getElementById('rotator');
+      const sizer   = document.getElementById('word-sizer');
+
+      // Set sizer to the longest word so the wrapper never reflows
+      sizer.textContent = WORDS.reduce((a, b) => b.length > a.length ? b : a, '');
+
+      // Build word spans
+      const spans = WORDS.map((text, i) => {
+        const el = document.createElement('span');
+        el.className = 'rotating-word' + (i === 0 ? ' active' : '');
+        el.textContent = text;
+        wrapper.appendChild(el);
+        return el;
+      });
+
+      let idx = 0;
+      setInterval(() => {
+        const prev = idx;
+        idx = (idx + 1) % spans.length;
+
+        // Slide old word out to the left
+        spans[prev].classList.remove('active');
+        spans[prev].classList.add('exiting');
+        setTimeout(() => spans[prev].classList.remove('exiting'), 550);
+
+        // Slide new word in from the right
+        spans[idx].classList.add('active');
+      }, 2800);
+    })();
+
+    // ── SCROLL REVEALS ──
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
           setTimeout(() => entry.target.classList.add('visible'), i * 60);
-          observer.unobserve(entry.target);
+          revealObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.12 });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   </script>
 </body>
 </html>
