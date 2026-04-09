@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pine Key Marketing — Naturally In Tune</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --green: #C0ECAC;
+      --green-dim: rgba(192, 236, 172, 0.15);
+      --green-mid: rgba(192, 236, 172, 0.4);
+      --black: #090909;
+      --off-black: #111111;
+      --card-bg: #141414;
+      --white: #F5F5F0;
+      --muted: rgba(245, 245, 240, 0.45);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+      opacity: 0.025;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      background: rgba(9,9,9,0.85);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(192,236,172,0.08);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--green);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 10rem 3rem 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* halftone grid background inspired by their branding */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(192,236,172,0.18) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(ellipse 80% 60% at 70% 50%, black 20%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 70% 50%, black 20%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.2s ease forwards;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4rem, 10vw, 9rem);
+      font-weight: 300;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      max-width: 14ch;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.4s ease forwards;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--green);
+    }
+
+    .hero-sub {
+      margin-top: 2.5rem;
+      max-width: 42ch;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.6s ease forwards;
+    }
+
+    .hero-cta {
+      margin-top: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.9s 0.8s ease forwards;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      border: 1px solid var(--green);
+      color: var(--black);
+      background: var(--green);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--green);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--green);
+      margin-left: 1rem;
+    }
+
+    .btn-outline:hover {
+      background: var(--green);
+      color: var(--black);
+    }
+
+    /* ── SECTION BASE ── */
+    section {
+      padding: 7rem 3rem;
+    }
+
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1.15;
+      max-width: 20ch;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+      border-top: 1px solid rgba(192,236,172,0.12);
+    }
+
+    .about-text {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.9;
+      margin-top: 1.8rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .stat {
+      padding: 2rem;
+      border: 1px solid rgba(192,236,172,0.1);
+      background: var(--card-bg);
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+
+    .stat:hover { border-color: var(--green-mid); }
+
+    .stat::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--green);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .stat:hover::before { transform: scaleX(1); }
+
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* ── SERVICES ── */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      margin-top: 4rem;
+      border: 1.5px solid rgba(192,236,172,0.1);
+    }
+
+    .service-card {
+      background: var(--card-bg);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      border: 1.5px solid rgba(192,236,172,0.1);
+    }
+
+    .service-card:hover { background: #181818; }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1.4rem;
+      display: block;
+    }
+
+    .service-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+    }
+
+    .service-desc {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .service-card::after {
+      content: '→';
+      position: absolute;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      color: var(--green);
+      font-size: 1.1rem;
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ── PROCESS ── */
+    .process {
+      border-top: 1px solid rgba(192,236,172,0.12);
+    }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 4rem;
+    }
+
+    .step {
+      padding: 2.5rem 2rem;
+      border-right: 1px solid rgba(192,236,172,0.1);
+      position: relative;
+    }
+
+    .step:last-child { border-right: none; }
+
+    .step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      color: rgba(192,236,172,0.15);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+
+    .step-desc {
+      font-size: 0.84rem;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ── CONTACT ── */
+    .contact {
+      border-top: 1px solid rgba(192,236,172,0.12);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-info {
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(192,236,172,0.08);
+    }
+
+    .contact-item:last-child { border-bottom: none; }
+
+    .contact-item-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-item-value {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--white);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item-value:hover { color: var(--green); }
+
+    /* contact form */
+    .contact-form {
+      margin-top: 2rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.4rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      background: var(--card-bg);
+      border: 1px solid rgba(192,236,172,0.12);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.25s;
+      resize: none;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--green);
+    }
+
+    .form-group textarea { height: 130px; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid rgba(192,236,172,0.1);
+      padding: 2.5rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--green);
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+    }
+
+    .footer-socials {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-socials a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-socials a:hover { color: var(--green); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      section { padding: 5rem 1.5rem; }
+      .hero { padding: 9rem 1.5rem 5rem; }
+
+      .about { grid-template-columns: 1fr; gap: 3rem; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .step { border-right: none; border-bottom: 1px solid rgba(192,236,172,0.1); }
+      .step:nth-child(even) { border-right: none; }
+
+      .contact { grid-template-columns: 1fr; gap: 3rem; }
+
+      footer {
+        flex-direction: column;
+        gap: 1.2rem;
+        text-align: center;
+        padding: 2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav-links { display: none; }
+      .about-stats { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .btn-outline { margin-left: 0; margin-top: 0.8rem; display: inline-block; }
+      .hero-cta { display: flex; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">Pine Key</a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <p class="hero-eyebrow">Utah's Digital Marketing Agency · Est. 2025</p>
+    <h1 class="hero-title">Naturally<br /><em>In Tune</em><br />With Your Brand.</h1>
+    <p class="hero-sub">Pine Key Marketing is a results-driven agency that connects your business with the right audience — authentically, strategically, and at the right moment.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn">Get In Touch</a>
+      <a href="#services" class="btn btn-outline">Our Services</a>
+    </div>
+  </header>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div>
+      <p class="section-label reveal">Who We Are</p>
+      <h2 class="section-title reveal">Marketing that moves at the speed of nature.</h2>
+      <p class="about-text reveal">We believe the best marketing feels effortless — like it was always supposed to be there. Pine Key blends data-backed strategy with genuine creative instinct to help Utah businesses grow with purpose and precision.</p>
+      <p class="about-text reveal" style="margin-top: 1rem;">Whether you're a startup finding your footing or an established brand ready to amplify, we tune into what makes you distinct and turn it into results.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat reveal">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Client Focus</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">ROI</div>
+        <div class="stat-label">First Mindset</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">Utah</div>
+        <div class="stat-label">Based & Rooted</div>
+      </div>
+      <div class="stat reveal">
+        <div class="stat-num">2025</div>
+        <div class="stat-label">Founded</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label reveal">What We Do</p>
+    <h2 class="section-title reveal">Services built for real growth.</h2>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-icon">◈</span>
+        <h3 class="service-name">Brand Strategy</h3>
+        <p class="service-desc">We define your voice, visual identity, and market positioning — crafting a brand story that resonates deeply and stays consistent across every touchpoint.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">◎</span>
+        <h3 class="service-name">Social Media Management</h3>
+        <p class="service-desc">From content calendars to community engagement, we handle your social presence so you can focus on running your business while your audience grows.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">◬</span>
+        <h3 class="service-name">Paid Advertising</h3>
+        <p class="service-desc">Data-driven ad campaigns across Meta, Google, and beyond. We optimize relentlessly to ensure every dollar you spend is a dollar working hard for you.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">◇</span>
+        <h3 class="service-name">Content Creation</h3>
+        <p class="service-desc">Photos, video, copy, and creative direction — we produce content that captures your brand's essence and compels your audience to act.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">○</span>
+        <h3 class="service-name">SEO & Web Presence</h3>
+        <p class="service-desc">We make sure the right people find you at the right time. From local search to long-form content, we grow your organic footprint steadily and sustainably.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-icon">△</span>
+        <h3 class="service-name">Analytics & Reporting</h3>
+        <p class="service-desc">Clear, honest reporting with insights you can actually use. We track what matters, explain what it means, and adjust strategy in real time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="process" id="process">
+    <p class="section-label reveal">How We Work</p>
+    <h2 class="section-title reveal">A clear process. Measurable results.</h2>
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3 class="step-title">Listen</h3>
+        <p class="step-desc">Every engagement starts with deep listening. We learn your business, your goals, your audience, and the gaps you need to close.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h3 class="step-title">Strategize</h3>
+        <p class="step-desc">We build a tailored roadmap — no cookie-cutter packages. Your strategy is as unique as your brand and as specific as your goals.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h3 class="step-title">Execute</h3>
+        <p class="step-desc">We move fast and thoughtfully, launching campaigns with precision and adapting in real time based on data and performance signals.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <h3 class="step-title">Grow</h3>
+        <p class="step-desc">Marketing is ongoing. We report transparently, iterate continuously, and scale what's working — always aligned with your evolving goals.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div>
+      <p class="section-label reveal">Get In Touch</p>
+      <h2 class="section-title reveal">Let's tune into something great together.</h2>
+      <div class="contact-info reveal">
+        <div class="contact-item">
+          <span class="contact-item-label">Email</span>
+          <a href="mailto:hello@pinekeymarketing.com" class="contact-item-value">hello@pinekeymarketing.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Instagram</span>
+          <a href="https://instagram.com/pinekeymarketing" target="_blank" class="contact-item-value">@pinekeymarketing</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-item-label">Location</span>
+          <span class="contact-item-value">Utah, USA</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="contact-form reveal">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Jane Smith" />
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" placeholder="jane@company.com" />
+        </div>
+        <div class="form-group">
+          <label>What can we help with?</label>
+          <textarea placeholder="Tell us about your business and goals..."></textarea>
+        </div>
+        <a href="mailto:hello@pinekeymarketing.com" class="btn">Send Message</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-logo">Pine Key Marketing</span>
+    <span class="footer-copy">© 2025 Pine Key Marketing · Utah, USA</span>
+    <div class="footer-socials">
+      <a href="https://instagram.com/pinekeymarketing" target="_blank">Instagram</a>
+    </div>
+  </footer>
+
+  <script>
+    // Intersection observer for reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
