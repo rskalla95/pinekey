@@ -7,7 +7,7 @@
       'nav{position:fixed;top:0;left:0;right:0;z-index:100;',
       'display:flex;justify-content:space-between;align-items:center;',
       'padding:calc(env(safe-area-inset-top) + 1.4rem) 3rem 1.4rem;',
-      'background:rgba(9,9,9,0.85);',
+      'background:rgba(9,9,9,0.97);',
       '-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);',
       'border-bottom:1px solid rgba(192,236,172,0.08);}',
 
