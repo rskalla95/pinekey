@@ -10,6 +10,8 @@
       'background:rgba(9,9,9,0.97);',
       '-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);',
       'border-bottom:1px solid rgba(192,236,172,0.08);}',
+      'nav::before{content:"";position:absolute;top:calc(-1 * env(safe-area-inset-top));',
+      'left:0;right:0;height:env(safe-area-inset-top);background:rgba(9,9,9,0.97);}',
 
       '.nav-logo{font-family:"Work Sans",sans-serif;font-size:1.35rem;font-weight:600;',
       'letter-spacing:0.04em;color:#C0ECAC;text-decoration:none;}',
