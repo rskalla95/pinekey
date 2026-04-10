@@ -27,8 +27,8 @@
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       line-height: 1.7;
-      overflow-x: hidden;
     }
+    .page-wrap { overflow-x: hidden; }
 
     body::before {
       content: '';
@@ -48,6 +48,8 @@
       background: rgba(9,9,9,0.85);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(192,236,172,0.08);
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
     }
     .nav-logo {
       font-family: 'Work Sans', sans-serif;
@@ -346,7 +348,7 @@
   </style>
 </head>
 <body>
-
+<div class="page-wrap">
   <!-- NAV -->
   <nav>
     <a class="nav-logo" href="#"><img src="logo-primary.png" alt="Pine Key Marketing" class="nav-logo-img" /></a>
@@ -607,5 +609,6 @@
 
     document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
   </script>
+</div>
 </body>
 </html>
