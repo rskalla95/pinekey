@@ -351,7 +351,7 @@
 <div class="page-wrap">
   <!-- NAV -->
   <nav>
-    <a class="nav-logo" href="#"><img src="logo-primary.png" alt="Pine Key Marketing" class="nav-logo-img" /></a>
+    <a class="nav-logo" href="/"><img src="logo-primary.png" alt="Pine Key Marketing" class="nav-logo-img" /></a>
     <ul class="nav-links" id="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
@@ -510,14 +510,21 @@
     (function () {
       const btn   = document.getElementById('hamburger');
       const links = document.getElementById('nav-links');
-      btn.addEventListener('click', () => {
+      function closeMenu() {
+        btn.classList.remove('open');
+        links.classList.remove('open');
+      }
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         btn.classList.toggle('open');
         links.classList.toggle('open');
       });
-      links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-        btn.classList.remove('open');
-        links.classList.remove('open');
-      }));
+      links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+      document.addEventListener('click', (e) => {
+        if (links.classList.contains('open') && !links.contains(e.target) && e.target !== btn) {
+          closeMenu();
+        }
+      });
     })();
 
     // ── MARQUEE ──
