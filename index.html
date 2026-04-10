@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <link rel="icon" type="image/png" href="logo-pk.png" />
   <title>Pine Key Marketing: Naturally In Tune</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -44,12 +44,11 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
-      padding: 1.4rem 3rem;
+      padding: calc(env(safe-area-inset-top) + 1.4rem) 3rem 1.4rem;
       background: rgba(9,9,9,0.85);
+      -webkit-backdrop-filter: blur(14px);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(192,236,172,0.08);
-      -webkit-transform: translateZ(0);
-      transform: translateZ(0);
     }
     .nav-logo {
       font-family: 'Work Sans', sans-serif;
@@ -316,7 +315,7 @@
 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: 1.2rem 1.5rem; }
+      nav { padding: calc(env(safe-area-inset-top) + 1.2rem) 1.5rem 1.2rem; }
       .nav-links { gap: 1.5rem; }
       section { padding: 5rem 1.5rem; }
       .hero { padding: 9rem 1.5rem 5rem; }
