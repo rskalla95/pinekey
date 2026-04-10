@@ -38,6 +38,8 @@
     "sameAs": []
   }
   </script>
+  <link rel="preload" as="image" href="hero.jpg" />
+  <script src="/nav.js" defer></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Work+Sans:wght@300;400;600;700&display=swap" rel="stylesheet" />
@@ -73,36 +75,6 @@
       z-index: 9999;
     }
 
-    /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      display: flex; justify-content: space-between; align-items: center;
-      padding: calc(env(safe-area-inset-top) + 1.4rem) 3rem 1.4rem;
-      background: rgba(9,9,9,0.85);
-      -webkit-backdrop-filter: blur(14px);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(192,236,172,0.08);
-    }
-    .nav-logo {
-      font-family: 'Work Sans', sans-serif;
-      font-size: 1.35rem; font-weight: 600; letter-spacing: 0.04em;
-      color: var(--green); text-decoration: none;
-    }
-    .nav-logo-img {
-      height: 80px;
-      width: auto;
-      display: block;
-    }
-    .nav-links {
-      display: flex; align-items: center; gap: 2.5rem;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--muted); text-decoration: none;
-      font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase;
-      transition: color 0.25s;
-    }
-    .nav-links a:hover { color: var(--green); }
 
     /* ── HERO ── */
     .hero {
@@ -334,22 +306,8 @@
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
     /* ── HAMBURGER ── */
-    .hamburger {
-      display: none; flex-direction: column; justify-content: space-between;
-      width: 22px; height: 15px; cursor: pointer; background: none; border: none; padding: 0;
-    }
-    .hamburger span {
-      display: block; height: 1.5px; background: var(--muted);
-      transition: transform 0.3s, opacity 0.3s;
-    }
-    .hamburger.open span:nth-child(1) { transform: translateY(6.75px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6.75px) rotate(-45deg); }
-
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      nav { padding: calc(env(safe-area-inset-top) + 1.2rem) 1.5rem 1.2rem; }
-      .nav-links { gap: 1.5rem; }
       section { padding: 5rem 1.5rem; }
       .hero { padding: 9rem 1.5rem 5rem; }
       .about { grid-template-columns: 1fr; gap: 3rem; }
@@ -362,15 +320,6 @@
       .clients { padding: 1.5rem 0; }
     }
     @media (max-width: 560px) {
-      .hamburger { display: flex; }
-      .nav-links {
-        display: none; flex-direction: column; align-items: flex-start;
-        position: fixed; top: 0; left: 0; right: 0;
-        background: rgba(9,9,9,0.97); backdrop-filter: blur(14px);
-        padding: 7rem 2rem 3rem; gap: 2rem; z-index: 99;
-      }
-      .nav-links.open { display: flex; }
-      .nav-links a { font-size: 1rem; letter-spacing: 0.08em; }
       .about-stats { grid-template-columns: 1fr; }
       .process-steps { grid-template-columns: 1fr; }
       .btn-outline { margin-left: 0; margin-top: 0.8rem; display: inline-block; }
@@ -382,18 +331,7 @@
 <body>
 <div class="page-wrap">
   <!-- NAV -->
-  <nav>
-    <a class="nav-logo" href="/"><img src="logo-primary.png" alt="Pine Key Marketing" class="nav-logo-img" /></a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#process">Process</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  <site-nav></site-nav>
 
   <!-- HERO -->
   <header class="hero">
@@ -538,27 +476,6 @@
   </footer>
 
   <script>
-    // ── HAMBURGER ──
-    (function () {
-      const btn   = document.getElementById('hamburger');
-      const links = document.getElementById('nav-links');
-      function closeMenu() {
-        btn.classList.remove('open');
-        links.classList.remove('open');
-      }
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        btn.classList.toggle('open');
-        links.classList.toggle('open');
-      });
-      links.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
-      document.addEventListener('click', (e) => {
-        if (links.classList.contains('open') && !links.contains(e.target) && e.target !== btn) {
-          closeMenu();
-        }
-      });
-    })();
-
     // ── MARQUEE ──
     (function () {
       const track   = document.querySelector('.clients-grid');
